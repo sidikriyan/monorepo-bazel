@@ -1,0 +1,33 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary")
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+load("@io_bazel_rules_docker//go:image.bzl", "go_image")
+load("@io_bazel_rules_docker//container:container.bzl", "container_push")
+
+go_library(
+    name = "go_web_lib",
+    srcs = ["main.go"],
+    deps = [
+      "//projects/go_hello_world",
+      "@com_github_gorilla_mux//:mux",
+    ],
+    importpath = "github.com/kriscfoster/multi-language-bazel-monorepo/projects/go_web",
+)
+
+go_binary(
+    name = "go_web",
+    embed = [":go_web_lib"],
+)
+
+go_image(
+    name = "go_web_image",
+    binary = ":go_web",
+)
+
+container_push(
+  name = "publish_image",
+  format = "Docker",
+  registry = "index.docker.io",
+  repository = "sidikriyan/bazel-golang",
+  image = ":go_web_image",
+  tag = "latest",
+)
