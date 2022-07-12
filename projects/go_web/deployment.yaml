@@ -9,10 +9,15 @@ spec:
   selector:
     matchLabels:
       app: golang-web
+  strategy: 
+    type: Recreate
+    rollingUpdate: null
   template:
     metadata:
       labels:
         app: golang-web
+      annotations:
+        rollme: {{ randAlphaNum 5 | quote }}
     spec:
       containers:
       - name: golang-web
