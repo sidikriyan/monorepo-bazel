@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodejs-web
+  labels:
+    app: nodejs-web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nodejs-web
+  template:
+    metadata:
+      labels:
+        app: nodejs-web
+    spec:
+      containers:
+      - name: nodejs-web
+        image: sidikriyan/bazel-nodejs:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080

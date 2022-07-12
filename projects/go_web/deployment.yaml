@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: golang-web
+  labels:
+    app: golang-web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: golang-web
+  template:
+    metadata:
+      labels:
+        app: golang-web
+    spec:
+      containers:
+      - name: golang-web
+        image: sidikriyan/bazel-golang:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+          name: golang-port

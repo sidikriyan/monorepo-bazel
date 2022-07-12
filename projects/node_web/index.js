@@ -5,7 +5,7 @@ const calculator = new Calculator();
 
 const port = process.env.PORT | 8080;
 
-app.get('/', (_req, res) => {
+app.get('/nodejs', (_req, res) => {
   const rand1 = getRandomInt(100);
   const rand2 = getRandomInt(100);
   res.send(`did you know that ${rand1} + ${rand2} = ${calculator.add(rand1, rand2)}`);

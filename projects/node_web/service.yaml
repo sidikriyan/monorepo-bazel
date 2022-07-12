@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: nodejs-web-svc
+  #nnotations:
+  # cloud.google.com/load-balancer-type: "Internal"
+  name: nodejs-web-svc
+spec:
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: nodejs-web
+  type: NodePort
