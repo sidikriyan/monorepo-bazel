@@ -26,8 +26,8 @@ nodejs_binary(
 container_push(
   name = "publish_image",
   format = "Docker",
-  registry = "index.docker.io",
-  repository = "sidikriyan/bazel-nodejs",
+  registry = "asia.gcr.io",
+  repository = "expanded-dryad-356011/bazel-nodejs",
   image = ":node_web_image",
   tag = "latest",
 )

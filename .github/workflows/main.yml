@@ -46,6 +46,7 @@ jobs:
       - run: bazel build //...
       - run: bazel test //...
       - run: bazel run //projects/go_web:publish_image
+      - run: bazel run //projects/node_web:publish_image
       # Get the GKE credentials so we can deploy to the cluster
       - run: |-
           gcloud container clusters get-credentials "$GKE_CLUSTER" --zone "$GKE_ZONE"

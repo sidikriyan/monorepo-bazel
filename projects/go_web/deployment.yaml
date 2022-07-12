@@ -16,12 +16,10 @@ spec:
     metadata:
       labels:
         app: golang-web
-      annotations:
-        rollme: {{ randAlphaNum 5 | quote }}
     spec:
       containers:
       - name: golang-web
-        image: sidikriyan/bazel-golang:latest
+        image: asia.gcr.io/expanded-dryad-356011/bazel-golang:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
