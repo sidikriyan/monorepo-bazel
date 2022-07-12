@@ -2,6 +2,7 @@ load("@io_bazel_rules_go//go:def.bzl", "go_binary")
 load("@io_bazel_rules_go//go:def.bzl", "go_library")
 load("@io_bazel_rules_docker//go:image.bzl", "go_image")
 load("@io_bazel_rules_docker//container:container.bzl", "container_push")
+load("@io_bazel_rules_k8s//k8s:object.bzl", "k8s_object")
 
 go_library(
     name = "go_web_lib",
@@ -30,4 +31,13 @@ container_push(
   repository = "expanded-dryad-356011/bazel-golang",
   image = ":go_web_image",
   tag = "latest",
+)
+
+k8s_object(
+  name = "golang_deploy",
+  kind = "deployment",
+  template = ":deployment.yaml",
+  images = {
+    "gcr.io/rules_k8s/server:dev": "//server:image"
+  },
 )
